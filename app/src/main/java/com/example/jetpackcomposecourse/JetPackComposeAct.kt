@@ -17,6 +17,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.format.TextStyle
@@ -25,21 +34,59 @@ class JetPackComposeAct : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//           ColumnsFun()
-//           RowsFun()
+//           ColumnsUI()
+//           RowsUI()
 //           ColumnsWithModifier()
-                ImageCard(
-                    painter = painterResource(id = R.drawable.ic_wallet),
-                    contentDescription = "Empty wallet",
-                    title = "Image of empty wallet"
-                )
+//                ImageCard(
+//                    painter = painterResource(id = R.drawable.ic_wallet),
+//                    contentDescription = "Empty wallet",
+//                    title = "Image of empty wallet"
+//                )
+//            StylingText()
         }
+    }
+}
+
+@Composable
+fun StylingText() {
+    //way to include custom fonts, best practice is lowercase and underscore for names
+    val fontFamily = FontFamily(
+        Font(R.font.windsong_medium, FontWeight.Medium),
+        Font(R.font.windsong_regular, FontWeight.Normal)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF101010))
+    ) {
+        Text(
+            //used to modify certain parts of strings
+            text = buildAnnotatedString {
+               withStyle(
+                   style = SpanStyle(
+                       color = Color.Green,
+                       fontSize = 10.sp
+                   )
+               ){
+                   append("Jetpack")
+               }
+                //anything after withStyle will follow the default design mentioned below
+                append(" Compose")
+            },
+            color = Color.White,
+            fontSize = 50.sp,
+            fontFamily =fontFamily,
+            fontWeight = FontWeight.Bold,
+            fontStyle = FontStyle.Italic,
+            textAlign = TextAlign.Center,
+            textDecoration = TextDecoration.Underline
+        )
     }
 }
 
 //Composable is way to create re usable ui as functions which can be called in on create
 @Composable
-fun ColumnsFun() {
+fun ColumnsUI() {
     /*
        but this doesnt really chnage the ui coz compose will make it and wide as it needs to be similar to wrap content
        to fix this we use modifiers with fillMaxSize or fillMaxWidth check  - ColumnsWithModifier()
@@ -51,7 +98,7 @@ fun ColumnsFun() {
 }
 
 @Composable
-fun RowsFun() {
+fun RowsUI() {
     Row(
         modifier = Modifier
             .width(300.dp)
@@ -88,7 +135,11 @@ fun ImageCard(
     title: String,//title of card
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = Modifier.fillMaxWidth(0.5f).padding(16.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth(0.5f)
+            .padding(16.dp)
+    ) {
         Card(
             modifier = modifier.fillMaxWidth(),
             shape = RoundedCornerShape(15.dp),
