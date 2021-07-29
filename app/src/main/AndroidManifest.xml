@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackComposeCourse">
         <activity
-            android:name=".MainActivity"
+            android:name=".JetPackComposeAct"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.JetpackComposeCourse.NoActionBar">
