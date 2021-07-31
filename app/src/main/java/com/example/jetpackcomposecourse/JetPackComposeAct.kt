@@ -3,10 +3,10 @@ package com.example.jetpackcomposecourse
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -37,28 +37,75 @@ class JetPackComposeAct : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 //           ColumnsUI()
-//            ==============
+//           ===============
 //           RowsUI()
-//            ===============
+//           ===============
 //           ColumnsWithModifier()
-//            ===================
+//           ===================
 //                ImageCard(
 //                    painter = painterResource(id = R.drawable.ic_wallet),
 //                    contentDescription = "Empty wallet",
 //                    title = "Image of empty wallet"
 //                )
-//            ===================
+//           ===================
 //            StylingText()
-//            ================
+//           ================
 //            ColorBoxWithState(modifier = Modifier.fillMaxSize())
-//            ==============
-            TextFieldButtonsSnackbar()
-//            ===================
+//           ==============
+//            TextFieldButtonsSnackbar()
+//           ===================
+//            CreateHardcodeList()
+//           =====================
+//            CreateDynaicList()
+//            =======================
 
         }
     }
 }
 
+@Composable
+fun CreateHardcodeList() {
+    val scrollState = rememberScrollState()
+    Column(modifier = Modifier.verticalScroll(scrollState)) {
+        for (i in 1..50) {
+            Text(
+                text = "text $i",
+                fontSize = 25.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+            )
+        }
+    }
+}
+
+@Composable
+fun CreateDynaicList() {
+    //aka recyclerview
+    //has inbuilt scrolling function
+    LazyColumn {
+        itemsIndexed(
+            listOf("This","is","zaid","app")
+        ){index,value->
+            Text(
+                text = "$value",
+                fontSize = 25.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+        //items if many , item if single
+//        items(100){
+//            Text(
+//                text = "text $it",
+//                fontSize = 25.sp,
+//                color = Color.White,
+//                textAlign = TextAlign.Center,
+//            )
+//        }
+
+    }
+}
 
 @Composable
 fun TextFieldButtonsSnackbar() {
