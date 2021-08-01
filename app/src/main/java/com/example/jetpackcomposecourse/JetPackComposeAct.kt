@@ -58,9 +58,35 @@ class JetPackComposeAct : ComponentActivity() {
 //           =====================
 //            CreateDynaicList()
 //            =======================
+            SimpleAnimation()
 
         }
     }
+}
+
+@Composable
+fun SimpleAnimation() {
+    var sizeState by remember {
+        mutableStateOf(200.dp)
+    }
+    Box(modifier = Modifier
+        .size(sizeState)
+        .background(Color.Green),
+        contentAlignment = Alignment.Center
+    ) {
+        Button(onClick = {
+            sizeState += 50.dp
+        }) {
+            Text(text = "Increase Size")
+        }
+    }
+}
+
+@Composable
+fun SideAffectsHandlers() {
+    //ui that escapes a scope of them function ,
+    // something inside a composable func which has nothing to do with compose
+
 }
 
 @Composable
@@ -84,8 +110,8 @@ fun CreateDynaicList() {
     //has inbuilt scrolling function
     LazyColumn {
         itemsIndexed(
-            listOf("This","is","zaid","app")
-        ){index,value->
+            listOf("This", "is", "zaid", "app")
+        ) { index, value ->
             Text(
                 text = "$value",
                 fontSize = 25.sp,
