@@ -56,12 +56,19 @@ class JetPackComposeAct : ComponentActivity() {
 //           ===================
 //            CreateHardcodeList()
 //           =====================
-//            CreateDynaicList()
+//            CreateDynamicList()
 //            =======================
-            SimpleAnimation()
-
+//            SimpleAnimation()
+//            ========================
+            SimpleNavigationWithDataPassing()
+//            =========================
         }
     }
+}
+
+@Composable
+fun SimpleNavigationWithDataPassing() {
+    Navigation()
 }
 
 @Composable
@@ -105,7 +112,7 @@ fun CreateHardcodeList() {
 }
 
 @Composable
-fun CreateDynaicList() {
+fun CreateDynamicList() {
     //aka recyclerview
     //has inbuilt scrolling function
     LazyColumn {
